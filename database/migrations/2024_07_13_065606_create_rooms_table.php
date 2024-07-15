@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('roomtype_id');
             $table->string('room_number');
+            $table->boolean('status')->default(false);
             $table->timestamps();
 
             $table->foreign('roomtype_id')
