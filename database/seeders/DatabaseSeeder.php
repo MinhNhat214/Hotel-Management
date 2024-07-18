@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            // HotelTableSeeder::class,
-            // UserTableSeeder::class,
-            // RoomTypeTableSeeder::class,
+            UserTableSeeder::class,
+            HotelTableSeeder::class,
+            RoomTypeTableSeeder::class,
             RoomTableSeeder::class,
-            // BookingTableSeeder::class
+            BookingTableSeeder::class
         ]);
     }
 }

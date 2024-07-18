@@ -1,88 +1,86 @@
-@include('layouts.app')
+@extends('layouts.app')
 
-@include('layouts.header')
+@section('content')
+    {{-- bg-slate-500 --}}
+    <div id="carousel">
+        {{-- <img class="h-96" src="{{ asset('img/gallery/gallery-1.jpg') }}" alt="" srcset=""> --}}
+        <img class="w-full"
+            src="https://statics.vinpearl.com/styles/1920x860/public/2023_01/About%20Pearl%20Club_1673079019.jpg.webp?itok=f-G5FUpc"
+            alt="" srcset="">
+    </div>
 
+    <div id="formbooknow" class="flex justify-between p-20">
+        <img class="w-1/2 h-auto" src="{{ asset('image/gallery/gallery-1.jpg') }}" alt="" srcset="">
 
-<div class="h-96 bg-slate-500">
+        <form method="post" action="{{ route('get.roomtypes') }}">
+            @csrf
+            <p class="text-center font-medium text-2xl pb-10">ĐẶT NGAY</p>
 
-</div>
+            <div class="py-3">
+                <label for="checkin_date" class="block mb-2 text-sm font-medium text-gray-900">Chọn ngày</label>
+                <div id="date-range-picker" date-rangepicker class="flex items-center">
+                    <input type="date" name="checkin_date" id="checkin_date" value="{{old('checkin_date')}}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
-<div class="flex justify-between p-20">
-    <div class="bg-slate-500 w-1/2 ">
+                    <span class="mx-4 text-gray-500">Đến</span>
+
+                    <input type="date" name="checkout_date" id="checkout_date" value="{{old('checkout_date')}}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+                @error('checkin_date')
+                    <p class="errors-message">{{ $message }}</p>
+                @enderror
+                @error('checkout_date')
+                    <p class="errors-message">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <div class="py-3">
+                <label for="guest_count" class="block mb-2 text-sm font-medium text-gray-900">Số khách</label>
+                <select name="guest_count" id="guest_count" aria-label="Default select"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+            <button type="submit"
+                class=" mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Đặt phòng
+            </button>
+        </form>
+    </div>
+    {{-- -----------------card------------------------------------------------------------------------ --}}
+    <div id="cardroomtype" class="flex justify-center">
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <a href="#">
+                <img class="rounded-t-lg"
+                    src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=2d22fe63ae1f8960e057238c98fb436f7bd9f65854e3a5e918607c5cfa1d0a52&o=&hp=1"
+                    alt="" />
+            </a>
+            <div class="p-5">
+                <a href="#">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology
+                        acquisitions 2021</h5>
+                </a>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                    acquisitions of 2021 so far, in reverse chronological order.</p>
+                <a href="#"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Read more
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="h-96 bg-slate-500">
 
     </div>
-    <form method="POST" action="">
-        <p class="text-center font-medium text-2xl pb-10">ĐẶT NGAY</p>
-        {{-- <div class="grid gap-6 mb-6 md:grid-cols-2"> --}}
-        <div class="py-3">
-            <label for="roomtype" class="block mb-2 text-sm font-medium text-gray-900">
-                Dạng phòng
-            </label>
-            <select name="roomtype" id="roomtype" aria-label="Default select"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4+</option>
-            </select>
-        </div>
-        <div class="py-3">
-            <label for="fromdate" class="block mb-2 text-sm font-medium text-gray-900">Chọn ngày</label>
-            <div id="date-range-picker" date-rangepicker class="flex items-center">
-                <input type="date" name="fromdate" id="fromdate"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-
-                <span class="mx-4 text-gray-500">Đến</span>
-
-                <input type="date" name="todate" id="todate"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-            </div>
-        </div>
-
-        <div class="py-3">
-            <label for="roomnumber" class="block mb-2 text-sm font-medium text-gray-900">Số
-                phòng</label>
-            <select name="roomnumber" id="roomnumber" aria-label="Default select"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option value="">1</option>
-                <option value="">2</option>
-            </select>
-        </div>
-
-        <div class="py-3">
-            <label for="countuser" class="block mb-2 text-sm font-medium text-gray-900">Số khách</label>
-            <select name="countuser" id="countuser" aria-label="Default select"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4+</option>
-            </select>
-        </div>
-
-        {{-- <div class="flex items-start mb-6">
-            <div class="flex items-center h-5">
-                <input id="remember" type="checkbox" value=""
-                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                    required />
-            </div>
-            <label for="remember" class="ms-2 text-sm font-medium text-gray-900">
-                Tôi đồng ý với
-                <a href="#" class="text-blue-600 hover:underline">
-                    các điều khoản và dịch vụ
-                </a>.
-            </label>
-        </div> --}}
-        <button type="submit"
-            class=" mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Đặt
-            phòng</button>
-    </form>
-</div>
-
-
-<div>
-    ko
-</div>
-</body>
-
-</html>
+@endsection
