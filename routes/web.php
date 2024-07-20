@@ -4,22 +4,39 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomTypeController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 
 
+//trang chu mac dinh -> post ngaynhan,ngaytra,sokhach đến roomtype
 Route::get('/', [BookingController::class, 'index'])->name('index');
 
+//nhan form tu trang chu -> xử xý validate -> điều hướng đến route roomtype
 Route::post('/get-roomtypes',[BookingController::class,'getRoomtypes'])->name('get.roomtypes');
 
+//nhận form từ trang chủ, trang get roomtype
+// -> lưu dữ liệu từ index + gọi dữ liệu từ roomtype để làm input radio -> trả về giao diện roomtype radio
 Route::get('/roomtypes',[RoomTypeController::class,'index'])->name('roomtype');
 
+//nhận form từ trang roomtype radio gộp 2 (roomtype + hóa đơn) mảng lại -> điều hướng đến hóa đơn
 Route::post('/get-booking',[RoomTypeController::class,'getBooking'])->name('get.booking');
 
+Route::get('/booking-detail',[BookingController::class,'bookingDetails'])->name('booking.details');
 
-Route::get('/welcom', function () {
-    return view('welcome');
-})->name('booking.details');
+// Route::get('booking-detail', function() {
+//     // Lấy dữ liệu từ session
+//     $booking = Session::get('booking');
+
+//     return view('booking_detail', [
+//         'booking' => $booking,
+//     ]);
+// })->name('booking.details');
+
+
+
+
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
@@ -58,3 +75,4 @@ Route::get('/register', function () {
 //     ->name('logout');
 
 // require __DIR__ . '/auth.php';
+
