@@ -17,6 +17,10 @@ return new class extends Migration
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->date('checkin_date');
             $table->date('checkout_date');
+            // $table->string('first_name');
+            // $table->string('last_name');
+            // $table->string('gmail');
+            // $table->string('phone_number');
             $table->integer('guest_count');
             $table->decimal('total_price',15,3);
             $table->timestamps();

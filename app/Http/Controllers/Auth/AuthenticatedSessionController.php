@@ -28,7 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if(empty(session('roomtype_id'))){
+            return redirect()->intended(route('index', absolute: false));
+        }
+
+        return redirect()->intended(route('booking-detail', absolute: false));
     }
 
     /**

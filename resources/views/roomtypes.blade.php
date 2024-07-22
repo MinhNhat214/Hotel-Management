@@ -7,9 +7,13 @@
 
 <body>
     <h2>Thông tin đặt phòng</h2>
-    <p>Từ ngày: {{ session('checkin_date') }}</p>
+    <li>Ngày nhận phòng: {{ session('checkin_date') }}</li>
+    <li>Ngày trả phòng: {{ session('checkout_date') }}</li>
+    <li>Số lượng khách: {{ session('guest_count') }}</li>
+
+    {{-- <p>Từ ngày: {{ session('checkin_date') }}</p>
     <p>Đến ngày: {{ session('checkout_date') }}</p>
-    <p>Số khách: {{ session('guest_count') }}</p>
+    <p>Số khách: {{ session('guest_count') }}</p> --}}
 
     <h2>Chọn loại phòng</h2>
     <form action="{{ route('get.booking') }}" method="post">
