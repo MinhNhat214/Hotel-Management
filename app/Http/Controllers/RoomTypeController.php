@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\RoomType;
 use Carbon\Carbon;
 use Faker\Core\DateTime;
@@ -40,74 +41,71 @@ class RoomTypeController extends Controller
     public function getBooking(Request $request)
     {
         try {
-            if (isset($request->room_type_id)) {
-                $room_type_id = $request->room_type_id;
-                $roomtypes = RoomType::where('id', $room_type_id)->first();
-
-                // dd($roomtypes->name);
-                if ($roomtypes) {
-                    $request->session()->put('roomtype', $roomtypes->toArray());
-                }
-                // tinh total_price = count_date * price
-                $checkin_date = session('checkin_date');
-                $checkout_date = session('checkout_date');
-
-                $start_date = Carbon::parse($checkin_date);
-                $end_date = Carbon::parse($checkout_date);
-                // dd(session('checkin_date'));
-
-                $count_date = $start_date->diffInDays($end_date);
-
-                $total_price = $roomtypes->price * $count_date;
-                // dd($count_date, $total_price);
-
-
-                $request->session()->put('room_type_id', $request->input('room_type_id'));
-                $request->session()->put('count_date', $count_date);
-                $request->session()->put('total_price', $total_price);
-
-                //Luu thong tin user vao session
-
-
-                // $request->session()->put('name', $request->input('name'));
-
-                // $data = [
-                //     'checkin_date' => $request->checkin_date,
-                //     'checkout_date' => $request->checkout_date,
-                //     'guest_count' => $request->guest_count,
-                //     'room_type_id' => $request->room_type_id,
-                //     'count_date' => $count_date,
-                //     'total_price' => $total_price,
-                // ];
-
-                // dd($data);
-
-                // $roomtypes = [
-                //     'id'=>$roomtypes->id,
-                //     'name' => $roomtypes->name,
-                //     'description' => $roomtypes->description,
-                //     'price' => $roomtypes->price,
-                //     'image_url' =>$roomtypes->image_url
-                // ];
-
-                // dd($roomtypes);
-                // $data = [
-                //     'id'=> $roomtypes->id,
-                //     'name'=> $roomtypes->name,
-                // ];
-                // $data = array_merge($data,['roomtypes' => $roomtypesArray]);
-                // dd($data);
-                // dd($data);
-                return redirect()->route('booking.details')
-                    // 'data'=>$data,
-                    // 'roomtypes'=>$roomtypes
-                ;
-            } else {
-                return redirect()->back()->with('error', 'Room type ID is not set');
+            if (!isset($request->roomtype_id)) {
+                return 'khong get duoc roomtype';
+                // return redirect()->back()->withErrors('error', 'Room type ID is not set');
             }
+
+            $roomtype_id = $request->roomtype_id;
+            // $roomtypes = RoomType::where('id', $room_type_id)->first();
+            $roomtypes = RoomType::find($roomtype_id);
+
+            if (!$roomtypes) {
+                return 'khong co loai phong';
+                // return redirect()->route('roomtype')->withErrors(['room_type_id' => 'Không tìm thấy loại phòng']);
+            }
+
+            //
+            $request->session()->put('roomtype', $roomtypes->toArray());
+
+            // dd(session('roomtype'));
+
+            $room = $this->getTrueRoom($roomtype_id);
+
+            if (!$room) {
+                // return 'khong co phong';
+                return redirect()->route('roomtype')->withErrors(['rooms' => 'Số phòng hiện đã hết, vui lòng chọn loại phòng khác!']);
+            }
+
+            $this->storeBookingDetail($request, $room, $roomtypes);
+
+            // return print_r(session('roomtype'));
+
+            return redirect()->route('booking.details');
         } catch (\Throwable $th) {
             //throw $th;
-            dd($th->getMessage());
+            return $th;
+            // dd($th->getMessage());
         }
+    }
+
+    private function getTrueRoom($roomtype_id)
+    {
+        return Room::where('roomtype_id', $roomtype_id)
+            ->where('status', false)
+            ->first();
+    }
+
+    private function storeBookingDetail(Request $request, $room, $roomtypes)
+    {
+        $request->session()->put('rooms', $room->toArray());
+
+        // tinh total_price = count_date * price
+        $checkin_date = session('checkin_date');
+        $checkout_date = session('checkout_date');
+
+        $start_date = Carbon::parse($checkin_date);
+        $end_date = Carbon::parse($checkout_date);
+        // dd(session('checkin_date'));
+
+        $count_date = $start_date->diffInDays($end_date);
+
+        $total_price = $roomtypes->price * $count_date;
+        // dd($count_date, $total_price);
+
+        $request->session()->put('room_type_id', $request->input('room_type_id'));
+        $request->session()->put('count_date', $count_date);
+        $request->session()->put('total_price', $total_price);
+
     }
 }

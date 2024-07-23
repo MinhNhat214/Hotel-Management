@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('index', absolute: false));
         }
 
-        return redirect()->intended(route('booking-detail', absolute: false));
+        return redirect()->intended(route('booking.details', absolute: false));
     }
 
     /**

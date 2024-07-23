@@ -1,28 +1,43 @@
-
-<nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
+<nav class="bg-white border-gray-200 px-4 lg:px-6 py-5 fixed w-full z-20 top-0 start-0">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-        <a href="https://flowbite.com" class="flex items-center">
-            <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap">Flowbite</span>
-        </a>
+        <img style="width: 40px; height: 40px;" class="bg-white" src="{{ asset('image/logo/logo-black.png') }}"
+            alt="" srcset="">
+
         <div class="flex items-center lg:order-2">
-
-
             <div>
-                <a href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
                 <ul>
-                    @guest
-                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
-                        @if (Route::has('register'))
-                            <li><a href="{{ route('register') }}">Đăng ký</a></li>
-                        @endif
-                    @else
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer; font: inherit; color: inherit;">Đăng xuất</button>
-                            </form>
-                        </li>
+                    <div class="flex space-x-3">
+                        @guest
+                            {{-- <button type="button" >Dark</button> --}}
+                            <li
+                                class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                <a href="{{ route('login') }}">Đăng nhập</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li
+                                    class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+                                    <a href="{{ route('register') }}">Đăng ký</a>
+                                </li>
+                            @endif
+                        @else
+                        </div>
+                        <ul class="flex">
+
+                            <li class="bg-red-300 px-4 rounded-md">
+                                <a href="#" class="text-white"> {{ Auth::user()->name }} </a>
+                            </li>
+                            <p> | </p>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    <button type="submit" class="text-gray-600">
+                                        {{-- style="background: none; border: none; padding: 0; cursor: pointer; font: inherit; color: inherit;"> --}}
+                                        Đăng xuất
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+
                     @endguest
                 </ul>
             </div>
@@ -47,22 +62,23 @@
                 </svg>
             </button>
         </div>
+
         <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
-                    <a href="#"
-                    {{-- <a href="{{ route('sunhouse.index') }}" --}}
+                    <a href="{{ route('index') }}" {{-- <a href="{{ route('sunhouse.index') }}" --}}
                         class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent"
-                        aria-current="page">Home</a>
+                        aria-current="page">Trang chủ</a>
                 </li>
                 <li>
                     <a href="#carousel"
                         class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent"
-                        aria-current="page">Company</a>
+                        aria-current="page">Phòng</a>
                 </li>
                 <li>
                     <a href="#formbooknow"
-                        class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent">Marketplace</a>
+                        class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 lg:dark:hover:text-white lg:dark:hover:bg-transparent">Liên
+                        hệ</a>
                 </li>
                 <li>
                     <a href="#cardroomtype"
@@ -81,4 +97,3 @@
     </div>
 </nav>
 {{-- --------------------------------------------------------- --}}
-

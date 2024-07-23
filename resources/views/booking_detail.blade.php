@@ -48,8 +48,12 @@
                 <p>{{ session('roomtype')['name'] }}</p>
                 <br>
 
+                <p>Số phòng</p>
+                <p>{{ session('rooms')['room_number'] }}</p>
+                <br>
+
                 <p>Giá phòng/đêm</p>
-                <p>{{ session('roomtype')['name'] }}</p>
+                <p>{{ format_currency(session('roomtype')['price'])}} VND</p>
                 <br>
 
                 <p>Số khách</p>
@@ -57,7 +61,7 @@
                 <br>
 
                 <p>Tổng cộng:</p>
-                <p>{{ session('total_price') }}</p>
+                <p>{{ format_currency(session('total_price')) }} VND</p>
             </div>
         </div>
     </div>
