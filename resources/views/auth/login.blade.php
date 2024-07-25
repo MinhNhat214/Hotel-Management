@@ -9,6 +9,9 @@
     </x-slot> --}}
     {{-- <img class="w-20 h-20" src="{{asset('public/image/logo/logo-black.png')}}" alt="" srcset=""> --}}
 
+    @if (session('success'))
+        {{session('success')}}
+    @endif
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -51,5 +54,8 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+            {{ __('Bạn chưa có tài khoản? Đăng ký!') }}
+        </a>
     </form>
 </x-guest-layout>

@@ -15,6 +15,8 @@
         <main class="pt-24">
             @yield('content')
         </main>
+
+        @include('layouts.footer')
     </div>
 </body>
 </html>

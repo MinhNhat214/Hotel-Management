@@ -37,7 +37,6 @@
                                 </form>
                             </li>
                         </ul>
-
                     @endguest
                 </ul>
             </div>
