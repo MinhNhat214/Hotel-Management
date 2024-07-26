@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 
 //trang chu mac dinh -> post ngaynhan,ngaytra,sokhach đến roomtype
@@ -57,50 +58,65 @@ Route::get('/booking-detail', [BookingController::class, 'bookingDetails'])
 
 
 // Routes cho chức năng đăng ký và đăng nhập
-Route::get('register', [RegisteredUserController::class, 'create'])
-    ->middleware('guest')
-    ->name('register');
+Route::middleware('guest')->group(function () {
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('register', [RegisteredUserController::class, 'store']);
 
-Route::post('register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest');
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+});
 
-Route::get('login', [AuthenticatedSessionController::class, 'create'])
-    ->middleware('guest')
-    ->name('login');
-
-Route::post('login', [AuthenticatedSessionController::class, 'store'])
-    ->middleware('guest');
-
+// Đăng xuất
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-//Verify email
-Auth::routes(['verify' => true]);
-
-// Route cho trang chủ (hoặc trang khác bạn muốn hiển thị sau khi đăng nhập)
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
-
-// Các route cho xác minh email
-Route::get('/email/verify', [EmailVerificationPromptController::class, '__invoke'])
-    ->middleware('auth')
-    ->name('verification.notice');
-
-Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify');
-
-Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
 
 
+// Routes cho chức năng đăng ký và đăng nhập
+// Route::get('register', [RegisteredUserController::class, 'create'])
+//     ->middleware('guest')
+//     ->name('register');
+
+// Route::post('register', [RegisteredUserController::class, 'store'])
+//     ->middleware('guest');
+
+// Route::get('login', [AuthenticatedSessionController::class, 'create'])
+//     ->middleware('guest')
+//     ->name('login');
+
+// Route::post('login', [AuthenticatedSessionController::class, 'store'])
+//     ->middleware('guest');
+
+// Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+//     ->middleware('auth')
+//     ->name('logout');
 
 
+//email verify
+Route::middleware('auth')->group(function () {
+    Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
+        ->name('verification.notice');
 
+    Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
 
-
+    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
+});
 // require __DIR__ . '/auth.php';
 
 //payment
 Route::post('/qrpayment', [QRController::class, 'index'])->name('qrpayment');
+
+
+Route::get('/send-test-email', function () {
+    Mail::raw('This is a test email using Mailtrap.', function ($message) {
+        $message->to('test@example.com')
+                ->subject('Test Email');
+    });
+
+    return 'Test email sent.';
+});
