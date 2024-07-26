@@ -1,9 +1,9 @@
-<footer class="bg-white dark:bg-gray-900">
+<footer class="bg-white">
     <div class="mx-auto w-full max-w-screen-xl">
         <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
             <div>
                 <img style="width: 80px; height: 80px;" src="{{asset('image/logo/logo-black.png')}}" alt="" srcset="">
-                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <ul class="text-gray-500 font-medium">
                     <li class="mb-4">
                         <a href="#" class=" hover:underline">32 Nguyễn Bỉnh Khiêm, Phường 01, Gò Vấp, Hồ Chí Minh, Việt Nam</a>
                     </li>
@@ -16,8 +16,8 @@
                 </ul>
             </div>
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Về SUNHOUSE</h2>
-                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Về SUNHOUSE</h2>
+                <ul class="text-gray-500 font-medium">
                     <li class="mb-4">
                         <a href="#" class=" hover:underline">Về chúng tôi</a>
                     </li>
@@ -33,9 +33,9 @@
                 </ul>
             </div>
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Điều khoản và quy định
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Điều khoản và quy định
                 </h2>
-                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <ul class="text-gray-500 font-medium">
                     <li class="mb-4">
                         <a href="#" class="hover:underline">Điều khoản chung</a>
                     </li>
@@ -51,8 +51,8 @@
                 </ul>
             </div>
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Tin tức và sự kiện</h2>
-                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Tin tức và sự kiện</h2>
+                <ul class="text-gray-500 font-medium">
                     <li class="mb-4">
                         <a href="#" class="hover:underline">Tin công ty</a>
                     </li>
@@ -66,12 +66,12 @@
             </div>
         </div>
 
-        <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a
+        <div class="px-4 py-6 bg-gray-100 md:flex md:items-center md:justify-between">
+            <span class="text-sm text-gray-500 sm:text-center">© 2023 <a
                     href="https://flowbite.com/">Flowbite™</a>. All Rights Reserved.
             </span>
             <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                <a href="#" class="text-gray-400 hover:text-gray-900">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 8 19">
                         <path fill-rule="evenodd"
@@ -80,7 +80,7 @@
                     </svg>
                     <span class="sr-only">Facebook page</span>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                <a href="#" class="text-gray-400 hover:text-gray-900">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 21 16">
                         <path
@@ -88,7 +88,7 @@
                     </svg>
                     <span class="sr-only">Discord community</span>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                <a href="#" class="text-gray-400 hover:text-gray-900">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 17">
                         <path fill-rule="evenodd"
@@ -97,7 +97,7 @@
                     </svg>
                     <span class="sr-only">Twitter page</span>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                <a href="#" class="text-gray-400 hover:text-gray-900">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
@@ -106,7 +106,7 @@
                     </svg>
                     <span class="sr-only">GitHub account</span>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                <a href="#" class="text-gray-400 hover:text-gray-900">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 20">
                         <path fill-rule="evenodd"

@@ -26,27 +26,27 @@
         </div>
 
         <div>
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
 
                 <div class="p-5">
-                    <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                         Chuyến đi đến SUNHOUSE</p>
 
                     <img style="border-radius: 5px;" class="py-3"
                         src="https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg"
                         alt="" srcset="">
 
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <p class="mb-3 font-normal text-gray-700">
                         Từ ngày: {{ session('checkin_date') }}
                     </p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <p class="mb-3 font-normal text-gray-700">
                         Đến ngày: {{ session('checkout_date') }}
                     </p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <p class="mb-3 font-normal text-gray-700">
                         Số khách: {{ session('guest_count') }}
                     </p>
                     <button type="submit"
-                        class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 flex items-center">
+                        class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 flex items-center">
                         Xác nhận đặt phòng
 
                         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

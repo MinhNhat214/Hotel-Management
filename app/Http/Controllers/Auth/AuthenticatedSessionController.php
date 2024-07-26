@@ -28,11 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if(empty(session('roomtype_id'))){
-            return redirect()->intended(route('index', absolute: false));
-        }
+        // if(!session('roomtype')){
+        // return redirect()->intended(route('index', absolute: false));
 
-        return redirect()->intended(route('booking.details', absolute: false));
+        // }
+
+        return redirect()->intended(route('index', absolute: false));
     }
 
     /**

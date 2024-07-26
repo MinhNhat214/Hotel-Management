@@ -100,11 +100,11 @@
             </button>
         </form> --}}
     </div>
-    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+    <hr class="h-px my-8 bg-gray-200 border-0">
 
     {{-- -----------------card------------------------------------------------------------------------ --}}
     <div id="cardroomtype" class="flex justify-center">
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
             <a href="#">
                 <img class="rounded-t-lg"
                     src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=2d22fe63ae1f8960e057238c98fb436f7bd9f65854e3a5e918607c5cfa1d0a52&o=&hp=1"
@@ -112,13 +112,13 @@
             </a>
             <div class="p-5">
                 <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy technology
                         acquisitions 2021</h5>
                 </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
+                <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
                     acquisitions of 2021 so far, in reverse chronological order.</p>
                 <a href="#"
-                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                     Read more
                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 14 10">
