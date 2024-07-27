@@ -22,5 +22,21 @@ class RoomTableSeeder extends Seeder
             'roomtype_id' => 1,
             'room_number' => 103,
         ]);
+        DB::table('rooms')->insert([
+            'roomtype_id' => 2,
+            'room_number' => 104,
+        ]);
+        DB::table('rooms')->insert([
+            'roomtype_id' => 1,
+            'room_number' => 105,
+        ]);
+        DB::table('rooms')->insert([
+            'roomtype_id' => 2,
+            'room_number' => 106,
+        ]);
+        DB::table('rooms')->insert([
+            'roomtype_id' => 1,
+            'room_number' => 107,
+        ]);
     }
 }

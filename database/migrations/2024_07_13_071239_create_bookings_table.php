@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('checkout_date');
             $table->integer('guest_count');
             $table->integer('total_price')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

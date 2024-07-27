@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -16,21 +17,20 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 
-// //trang chu mac dinh -> post ngaynhan,ngaytra,sokhach đến roomtype
+// trang chu mac dinh -> post ngaynhan, ngaytra, sokhach đến roomtype
 Route::get('/', [BookingController::class, 'index'])->name('index');
 
 //nhan form tu trang chu -> xử xý validate -> điều hướng đến route roomtype
 Route::post('/get-roomtypes', [BookingController::class, 'getRoomtypes'])->name('get.roomtypes');
 
-
-// //nhận form từ trang chủ, trang get roomtype
+// nhận form từ trang chủ, trang get roomtype
 // -> lưu dữ liệu từ index + gọi dữ liệu từ roomtype để làm input radio -> trả về giao diện roomtype radio
 Route::get('/roomtypes', [RoomTypeController::class, 'index'])->name('roomtype');
 
-// //nhận form từ trang roomtype radio gộp 2 (roomtype + hóa đơn) mảng lại -> điều hướng đến view hóa đơn
+// nhận form từ trang roomtype radio gộp 2 (roomtype + hóa đơn) mảng lại -> điều hướng đến view hóa đơn
 Route::post('/get-booking', [RoomTypeController::class, 'getBooking'])->name('get.booking');
 
-// // Route::get('/booking-detail',[BookingController::class,'bookingDetails'])->name('booking.details');
+// Route::get('/booking-detail',[BookingController::class,'bookingDetails'])->name('booking.details');
 
 
 // Route booking-detail
@@ -66,6 +66,14 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
+
+
+
+
+// Route::get('/email/verify', function () {
+//     return view('auth.verify-email');
+// })->middleware('auth')->name('verification.notice');
+
 // // Logic cho chức năng đăng ký và đăng nhập
 // // Route::get('register', [RegisteredUserController::class, 'create'])
 // //     ->middleware('guest')
@@ -98,11 +106,22 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 // //         ->name('verification.send');
 // // });
 // // require __DIR__ . '/auth.php';
+//Route admin
+Route::get('/admin',[AdminController::class,'index'])
+->middleware('admin')->name('admin.home');
+Route::get('booking-manager',[AdminController::class,'bookingManager'])
+->middleware('admin')->name('admin.bookingmanager');
+
+
+
+
+
+
+
 
 
 // //payment
 Route::post('/qrpayment', [QRController::class, 'index'])->name('qrpayment');
-
 // //test mail
 // // Route::get('/send-test-email', function () {
 // //     Mail::raw('This is a test email using Mailtrap.', function ($message) {

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -28,10 +29,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // if(!session('roomtype')){
-        // return redirect()->intended(route('index', absolute: false));
-
-        // }
+        if ($request->has('admin')) {
+            if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
+                $request->session()->regenerate();
+                return redirect()->intended(route('admin.dashboard'));
+            }
+        } else {
+            if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
+                $request->session()->regenerate();
+                return redirect()->intended(route('index'));
+            }
+        }
 
         return redirect()->intended(route('index', absolute: false));
     }
