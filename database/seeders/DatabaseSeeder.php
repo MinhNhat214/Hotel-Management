@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             BookingTableSeeder::class,
         ]);
 
-        Booking::factory()->count(10)->create();
+        Booking::factory()->count(40)->create();
 
     }
 }

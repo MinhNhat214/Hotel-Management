@@ -16,8 +16,11 @@ return new class extends Migration
             $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('description');
-            $table->decimal('price', 15, 3);
-            $table->string('image_url');
+            $table->decimal('price');
+            $table->decimal('area', 8, 2);
+            $table->string('beds');
+            $table->string('amenities');
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }

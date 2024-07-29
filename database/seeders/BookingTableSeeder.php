@@ -19,7 +19,7 @@ class BookingTableSeeder extends Seeder
             'checkin_date' => '2024-7-20',
             'checkout_date' => '2024-7-25',
             'guest_count'=>3,
-            'total_price' => 1500
+            'total_price' => 1500,
         ]);
     }
 }
