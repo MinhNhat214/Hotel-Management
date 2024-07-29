@@ -1,81 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+@section('content')
+    <div class="py-11">
+        <div>
+            <a href="{{ route('admin.booking_add') }}" class="btn-primary">Thêm hóa đơn</a>
+        </div>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+                    <tr>
+                        <th scope="col" class="py-3">
+                            Mã hóa đơn
+                        </th>
+                        <th scope="col" class="py-3">
+                            Mã người dùng
+                        </th>
+                        <th scope="col" class="py-3">
+                            Mã phòng
+                        </th>
+                        <th scope="col" class="py-3">
+                            Từ ngày
+                        </th>
+                        <th scope="col" class="py-3">
+                            Đến ngày
+                        </th>
+                        <th scope="col" class="py-3">
+                            Số khách
+                        </th>
+                        <th scope="col" class="py-3">
+                            Tổng tiền
+                        </th>
 
-<body>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="py-3">
-                        STT
-                    </th>
-                    <th scope="col" class="py-3">
-                        Mã người dùng
-                    </th>
-                    <th scope="col" class="py-3">
-                        Mã phòng
-                    </th>
-                    <th scope="col" class="py-3">
-                        Từ ngày
-                    </th>
-                    <th scope="col" class="py-3">
-                        Đến ngày
-                    </th>
-                    <th scope="col" class="py-3">
-                        Số khách
-                    </th>
-                    <th scope="col" class="py-3">
-                        Tổng tiền
-                    </th>
-
-                    <th scope="col" class="py-3">
-                        Trạng thái
-                    </th>
-                    <th scope="col" class="py-3">
-                        Ngày nhập hóa đơn
-                    </th>
-                    <th scope="col" class="py-3">
-                        Chỉnh sửa gần nhất
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($bookings as $booking)
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td>{{ $booking['id'] }}</td>
-                        <td>{{ $booking['user_id'] }}</td>
-                        <td>{{ $booking['room_id'] }}</td>
-                        <td>{{ $booking['checkin_date'] }}</td>
-                        <td>{{ $booking['checkout_date'] }}</td>
-                        <td>{{ $booking['guest_count'] }}</td>
-                        <td>{{ $booking['total_price'] }}</td>
-                        <td>{{ $booking['status'] }}</td>
-                        <td>{{ $booking['created_at'] }}</td>
-                        <td>{{ $booking['updated_at'] }}</td>
-                        <td>
-                            <form action="{{route('')}}" method="post">
-                                <input type="hidden" name="booking_id" value="{{$booking['id']}}">
-                                <button type="submit"
-                                    class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
-                                    Chỉnh sửa
-                                </button>
-                            </form>
-                        </td>
+                        <th scope="col" class="py-3">
+                            Trạng thái
+                        </th>
+                        <th scope="col" class="py-3">
+                            Ngày nhập hóa đơn
+                        </th>
+                        <th scope="col" class="py-3">
+                            Chỉnh sửa gần nhất
+                        </th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($bookings as $booking)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="table-value text-center">{{ $booking['id'] }}</td>
+                            <td class="table-value text-center">{{ $booking['user_id'] }}</td>
+                            <td class="table-value text-center">{{ $booking['room_id'] }}</td>
+                            <td class="table-value text-center">{{ $booking['checkin_date'] }}</td>
+                            <td class="table-value text-center">{{ $booking['checkout_date'] }}</td>
+                            <td class="table-value text-center">{{ $booking['guest_count'] }}</td>
+                            <td class="table-value text-center">{{ $booking['total_price'] }}</td>
+                            <td class="table-value text-center">
+                                @if ($booking['status'] == 'Đã thanh toán')
+                                    <p style="color:rgb(52, 182, 26);"> {{ $booking['status'] }} </p>
+                                @elseif ($booking['status'] == 'Chưa thanh toán')
+
+                                    <p style="color:rgb(235, 42, 42);"> {{ $booking['status'] }} </p>
+
+                                @endif
+                            </td>
+                            <td class="table-value text-center">{{ $booking['created_at'] }}</td>
+                            <td class="table-value text-center">{{ $booking['updated_at'] }}</td>
+                            <td>
+                                <a href="{{ route('admin.booking_edit', $booking['id']) }}"
+                                    style="background-color: rgb(86, 86, 252); color: white; padding:4px 10px; border-radius:5px">
+                                    Chỉnh sửa
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('admin.booking_delete_submit', $booking['id']) }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="booking_id" value="{{ $booking['id'] }}">
+                                    <button type="submit" class="btn-delete">
+                                        <i class="fa-solid fa-x"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="py-5 px-5">
+                {{ $bookings->links() }}
+            </div>
+        </div>
     </div>
-
-</body>
-
-</html>
+@endsection
