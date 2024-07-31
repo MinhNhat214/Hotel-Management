@@ -6,6 +6,7 @@ use App\Http\Controllers\Session;
 use App\Models\Booking;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -41,4 +42,22 @@ class BookingController extends Controller
         return view('booking_detail');
     }
 
+    public function payment(Request $request){
+        $dataRoom = $request->session()->get('rooms');
+
+        Booking::create([
+            'user_id' => Auth::user()->id,
+            'room_id' => $dataRoom['id'],
+            'checkin_date' => session('checkin_date'),
+            'checkout_date' => session('checkout_date'),
+            'guest_count' => session('guest_count'),
+            'total_price' => session('total_price'),
+            'create_at' => now(),
+            'update_at' => now(),
+        ]);
+
+        $request->session()->forget('roomtype');
+        
+        return redirect()->route('index')->with('success', 'Đặt phòng thành công');
+    }
 }

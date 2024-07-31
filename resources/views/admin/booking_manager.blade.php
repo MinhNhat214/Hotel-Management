@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <div class="success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('fail'))
+        <div class="fail">
+            {{ session('fail') }}
+        </div>
+    @endif
     <div class="py-11">
         <div>
             <a href="{{ route('admin.booking_add') }}" class="btn-primary">Thêm hóa đơn</a>
@@ -57,9 +66,7 @@
                                 @if ($booking['status'] == 'Đã thanh toán')
                                     <p style="color:rgb(52, 182, 26);"> {{ $booking['status'] }} </p>
                                 @elseif ($booking['status'] == 'Chưa thanh toán')
-
                                     <p style="color:rgb(235, 42, 42);"> {{ $booking['status'] }} </p>
-
                                 @endif
                             </td>
                             <td class="table-value text-center">{{ $booking['created_at'] }}</td>

@@ -1,23 +1,26 @@
-<footer class="bg-white">
+<footer class="bg-white pt-4">
     <div class="mx-auto w-full max-w-screen-xl">
         <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
             <div>
-                <img style="width: 80px; height: 80px;" src="{{asset('image/logo/logo-black.png')}}" alt="" srcset="">
-                <ul class="text-gray-500 font-medium">
+                <img style="width: 80px; height: 80px;"src="{{asset('image/logo/logo-black.png')}}" alt="" srcset="">
+                <ul class="text-gray-500 font-nomal text-sm">
                     <li class="mb-4">
-                        <a href="#" class=" hover:underline">32 Nguyễn Bỉnh Khiêm, Phường 01, Gò Vấp, Hồ Chí Minh, Việt Nam</a>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <a href="#" class=" hover:underline">Phường 01, Gò Vấp, Hồ Chí Minh, Việt Nam</a>
                     </li>
                     <li class="mb-4">
+                        <i class="fa-solid fa-envelope"></i>
                         <a href="#" class="hover:underline">sunhouse3000@gmail.com</a>
                     </li>
                     <li class="mb-4">
+                        <i class="fa-solid fa-phone"></i>
                         <a href="#" class="hover:underline">1900 23 23 46</a>
                     </li>
                 </ul>
             </div>
             <div>
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Về SUNHOUSE</h2>
-                <ul class="text-gray-500 font-medium">
+                <ul class="text-gray-500 font-nomal text-sm">
                     <li class="mb-4">
                         <a href="#" class=" hover:underline">Về chúng tôi</a>
                     </li>
@@ -35,7 +38,7 @@
             <div>
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Điều khoản và quy định
                 </h2>
-                <ul class="text-gray-500 font-medium">
+                <ul class="text-gray-500 font-nomal text-sm">
                     <li class="mb-4">
                         <a href="#" class="hover:underline">Điều khoản chung</a>
                     </li>
@@ -52,7 +55,7 @@
             </div>
             <div>
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Tin tức và sự kiện</h2>
-                <ul class="text-gray-500 font-medium">
+                <ul class="text-gray-500 font-nomal text-sm">
                     <li class="mb-4">
                         <a href="#" class="hover:underline">Tin công ty</a>
                     </li>
@@ -67,9 +70,6 @@
         </div>
 
         <div class="px-4 py-6 bg-gray-100 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center">© 2023 <a
-                    href="https://flowbite.com/">Flowbite™</a>. All Rights Reserved.
-            </span>
             <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
                 <a href="#" class="text-gray-400 hover:text-gray-900">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"

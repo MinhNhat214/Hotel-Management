@@ -29,17 +29,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->has('admin')) {
-            if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-                $request->session()->regenerate();
-                return redirect()->intended(route('admin.dashboard'));
-            }
-        } else {
-            if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
-                $request->session()->regenerate();
-                return redirect()->intended(route('index'));
-            }
-        }
+        // if ($request->has('admin')) {
+        //     if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
+        //         $request->session()->regenerate();
+
+        //         return redirect()->intended(route('admin.dashboard'));
+        //     }
+        // } else {
+        //     if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
+        //         $request->session()->regenerate();
+        //         return redirect()->intended(route('index'));
+        //     }
+        // }
 
         return redirect()->intended(route('index', absolute: false));
     }

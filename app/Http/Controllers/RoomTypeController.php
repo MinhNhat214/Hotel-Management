@@ -15,18 +15,6 @@ class RoomTypeController extends Controller
     //
     public function index()
     {
-        // Lấy dữ liệu từ session
-        // $sessionData = Session::all();
-        // $checkin_date = $request->session()->get('checkin_date');
-        // $checkout_date = $request->session()->get('checkout_date');
-        // $guest_count = $request->session()->get('guest_count');
-
-        // $data = [
-        //     'checkin_date' => $checkin_date,
-        //     'checkout_date' => $checkout_date,
-        //     'guest_count' => $guest_count
-        // ];
-
         if (empty(session('checkin_date')) || empty(session('checkout_date')) || empty(session('guest_count'))) {
             return route('index');
         }

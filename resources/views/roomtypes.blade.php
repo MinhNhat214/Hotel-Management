@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <div class="success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('fail'))
+        <div class="fail">
+            {{ session('fail') }}
+        </div>
+    @endif
     <form action="{{ route('get.booking') }}" method="post" class="flex justify-around">
         @csrf
-        {{-- <input type="hidden" name="checkin_date" value="{{ session('checkin_date') }}">
-        <input type="hidden" name="checkout_date" value="{{ session('checkout_date') }}">
-        <input type="hidden" name="guest_count" value="{{ session('guest_count') }}"> --}}
-
         <div class="flex flex-col space-y-4">
             @foreach ($roomtypes as $roomtype)
                 <label for="roomtype_{{ $roomtype->id }}" class="relative block cursor-pointer bg-white">
@@ -14,7 +19,8 @@
                         value="{{ $roomtype->id }}" class="peer sr-only">
                     <div
                         class="p-4 border-2 border-gray-300 peer-checked:border-blue-500 peer-checked:bg-blue-50 rounded-lg transition-colors">
-                        <img class="w-32 h-32 object-cover py-3" src="{{ $roomtype->image_url }}" alt="" srcset="">
+                        <img class="w-32 h-32 object-cover py-3" src="{{ $roomtype->image_url }}" alt=""
+                            srcset="">
                         <p class="text-lg font-semibold">{{ $roomtype->name }}</p>
                         <p class="">{{ $roomtype->description }}</p>
                     </div>
