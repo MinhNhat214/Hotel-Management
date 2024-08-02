@@ -8,17 +8,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Models\Booking;
 
-// trang chu mac dinh -> post ngaynhan, ngaytra, sokhach đến roomtype
 Route::get('/', [BookingController::class, 'index'])->name('index');
 
-//nhan form tu trang chu -> xử xý validate -> điều hướng đến route roomtype
 Route::post('/get-roomtypes', [BookingController::class, 'getRoomtypes'])->name('get.roomtypes');
 
-// nhận form từ trang chủ, trang get roomtype
-// -> lưu dữ liệu từ index + gọi dữ liệu từ roomtype để làm input radio -> trả về giao diện roomtype radio
 Route::get('/roomtypes', [RoomTypeController::class, 'index'])->name('roomtype');
 
-// nhận form từ trang roomtype radio gộp 2 (roomtype + hóa đơn) mảng lại -> điều hướng đến view hóa đơn
 Route::post('/get-booking', [RoomTypeController::class, 'getBooking'])->name('get.booking');
 
 Route::post('/pay',[BookingController::class,'payment'])->name('payment');
@@ -26,13 +21,8 @@ Route::post('/pay',[BookingController::class,'payment'])->name('payment');
 
 // Route booking-detail
 Route::get('/booking-detail', [BookingController::class, 'bookingDetails'])
-    ->middleware(['auth', 'verified']) // Không sử dụng middleware 'verified' ở đây
+    ->middleware(['auth', 'verified'])
     ->name('booking.details');
-
-// Route::get('/', function () {
-//     return view('index');
-// })->middleware(['auth', 'verified'])->name('index');
-
 
 //Route admin
 Route::get('/admin', [AdminController::class, 'index'])
@@ -51,7 +41,7 @@ Route::get('booking-add', [AdminController::class, 'bookingAdd'])
 //Xu ly Update
 Route::put('booking-edit-submit', [AdminController::class, 'bookingEditSubmit'])
     ->middleware('admin')->name('admin.booking_edit_submit');
-    
+
 Route::post('booking-add-submit', [AdminController::class, 'bookingAddSubmit'])
     ->middleware('admin')->name('admin.booking_add_submit');
 Route::post('booking-delete/{id}', [AdminController::class, 'bookingDeleteSubmit'])

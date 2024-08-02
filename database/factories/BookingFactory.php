@@ -20,9 +20,6 @@ class BookingFactory extends Factory
     protected $model = Booking::class;
     public function definition(): array
     {
-        // $checkin_date = $this->faker->dateTimeBetween('now', '+1 month');
-        // $checkout_date = (clone $checkin_date)->modify('+3 days');
-
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'room_id' => Room::inRandomOrder()->first()->id,

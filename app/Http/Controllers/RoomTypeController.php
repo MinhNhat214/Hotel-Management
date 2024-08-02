@@ -30,40 +30,30 @@ class RoomTypeController extends Controller
     {
         try {
             if (!isset($request->roomtype_id)) {
-                return 'khong get duoc roomtype';
-                // return redirect()->back()->withErrors('error', 'Room type ID is not set');
+                return redirect()->back()->withErrors('fail', 'Room type id khong ton tai!');
             }
 
             $roomtype_id = $request->roomtype_id;
-            // $roomtypes = RoomType::where('id', $room_type_id)->first();
+
             $roomtypes = RoomType::find($roomtype_id);
 
             if (!$roomtypes) {
-                return 'khong co loai phong';
-                // return redirect()->route('roomtype')->withErrors(['room_type_id' => 'Không tìm thấy loại phòng']);
+                return redirect()->route('roomtype')->withErrors(['fail' => 'Không tìm thấy loại phòng']);
             }
 
-            //
             $request->session()->put('roomtype', $roomtypes->toArray());
-
-            // dd(session('roomtype'));
 
             $room = $this->getTrueRoom($roomtype_id);
 
             if (!$room) {
-                // return 'khong co phong';
-                return redirect()->route('roomtype')->withErrors(['rooms' => 'Số phòng hiện đã hết, vui lòng chọn loại phòng khác!']);
+                return redirect()->route('roomtype')->withErrors(['fail' => 'Số phòng hiện đã hết, vui lòng chọn loại phòng khác!']);
             }
 
             $this->storeBookingDetail($request, $room, $roomtypes);
 
-            // return print_r(session('roomtype'));
-
             return redirect()->route('booking.details');
         } catch (\Throwable $th) {
-            //throw $th;
-            return $th;
-            // dd($th->getMessage());
+            throw $th;
         }
     }
 
